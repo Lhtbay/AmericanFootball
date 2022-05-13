@@ -64,8 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Maps_Instantiate.cs" />
+    <Compile Include="Assets\Scripts\Enemy_Movement.cs" />
+    <Compile Include="Assets\Scripts\Friendly_Movement.cs" />
+    <Compile Include="Assets\Scripts\Game_Manager.cs" />
     <Compile Include="Assets\Scripts\Player_Movement.cs" />
+    <Compile Include="Assets\Scripts\Pools\Enemy_Pooling.cs" />
+    <Compile Include="Assets\Scripts\Pools\Friendly_Pooling.cs" />
+    <Compile Include="Assets\Scripts\Pools\Maps_Instantiate.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -67,7 +67,7 @@ public class Player_Movement : MonoBehaviour
         }
         else if (other.gameObject.tag == "Enemy")
         {
-
+            _stop = true;
         }
     }   
 

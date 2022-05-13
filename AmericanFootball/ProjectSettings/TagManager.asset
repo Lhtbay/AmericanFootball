@@ -8,6 +8,11 @@ TagManager:
   - NorRot
   - BackRot
   - Winner
+  - GameManager
+  - Enemy
+  - EnemySpawn
+  - PoolEnemy
+  - Friendly
   layers:
   - Default
   - TransparentFX
