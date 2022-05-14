@@ -79,6 +79,7 @@ public class Player_Movement : MonoBehaviour
             if (_winnerTimer>=0.5f)
             {
                 _winnerTimer = 0;
+                _mainCamera.GetComponent<MainCamera>().enabled = true;
                 _stop = true;
             }
         }
@@ -104,6 +105,7 @@ public class Player_Movement : MonoBehaviour
         else if (other.gameObject.tag == "Enemy")
         {
             _stop = true;
+            _mainCamera.GetComponent<MainCamera>().enabled = true;
             _gameManager.GameStop = true;
             RagdolSysthem();
         }

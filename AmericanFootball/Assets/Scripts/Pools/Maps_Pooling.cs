@@ -15,7 +15,7 @@ public class Maps_Pooling : MonoBehaviour
 
     private Game_Manager _gameManager;
 
-    private void Start()
+    private void Awake()
     {
         _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
 

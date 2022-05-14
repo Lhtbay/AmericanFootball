@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Enemy_Movement.cs" />
     <Compile Include="Assets\Scripts\Friendly_Movement.cs" />
     <Compile Include="Assets\Scripts\Game_Manager.cs" />
+    <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\Player_Movement.cs" />
     <Compile Include="Assets\Scripts\Pools\Enemy_Pooling.cs" />
     <Compile Include="Assets\Scripts\Pools\Friendly_Pooling.cs" />
