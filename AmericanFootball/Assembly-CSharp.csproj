@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\Player_Movement.cs" />
     <Compile Include="Assets\Scripts\Pools\Enemy_Pooling.cs" />
     <Compile Include="Assets\Scripts\Pools\Friendly_Pooling.cs" />
-    <Compile Include="Assets\Scripts\Pools\Maps_Instantiate.cs" />
+    <Compile Include="Assets\Scripts\Pools\Maps_Pooling.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

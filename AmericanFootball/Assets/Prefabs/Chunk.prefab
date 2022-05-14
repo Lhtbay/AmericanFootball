@@ -291,6 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 716878291882023581}
   - component: {fileID: 1356173717487801111}
+  - component: {fileID: 8505778996972413187}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
@@ -326,6 +327,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3836357440950219090}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &8505778996972413187
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836357440950219090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.927208, y: 0.49879265, z: 10.514035}
+  m_Center: {x: 1.2110767, y: -0.25060368, z: 0.17639399}
 --- !u!1 &4253392979586256596
 GameObject:
   m_ObjectHideFlags: 0

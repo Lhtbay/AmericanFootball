@@ -31,8 +31,8 @@ public class Enemy_Movement : MonoBehaviour
             {              
                 _timer = 0;
                 _timeToFalse=false;
-                this.gameObject.SetActive(false);
                 transform.parent = _poolEnemy.transform;
+                this.gameObject.SetActive(false);               
             }
         }
         if (Vector3.Distance(_player.transform.position, transform.position) < 5)

@@ -813,7 +813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262808070513586332}
   - component: {fileID: 767477749034039574}
-  - component: {fileID: 6436520596363870695}
+  - component: {fileID: 1926186732}
   m_Layer: 0
   m_Name: Chunk - LevelEnd
   m_TagString: Winner
@@ -864,7 +864,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3263353781922290515}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6436520596363870695
+--- !u!65 &1926186732
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -875,8 +875,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1.9553585, z: 7.7853117}
-  m_Center: {x: 0, y: 0.8528347, z: 1.1073442}
+  m_Size: {x: 10.217518, y: 0.5194588, z: 10.363455}
+  m_Center: {x: -0.32079506, y: -0.24027061, z: 0.108734846}
 --- !u!1 &4050422453958988216
 GameObject:
   m_ObjectHideFlags: 0

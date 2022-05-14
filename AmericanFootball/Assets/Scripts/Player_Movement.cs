@@ -12,11 +12,6 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float _leftPassTime;
     [SerializeField] private float _anglePassTime;
     [SerializeField] private float _returnNormalizedTime;
-    private Transform _normalZRotation;
-    private Transform _runningZRotation;
-    private Transform _backNormalRotation;
-    private Transform _playerTransform;
-    private Animator _playerAnim;
 
     [Header("Camera Settings")]
     [SerializeField] private int _normalFOV;
@@ -24,29 +19,69 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float _smoothTime;
     private Camera _mainCamera;
 
+    private bool _stop,_winner = false;
+
     private float _playerSpeed;
     private float _newXPosition;
-    private float _timer;
+    private float _timer,_winnerTimer;
 
     private int _randomWinAnimationCount;
 
-    private bool _stop = false;
+    private Transform _normalZRotation;
+    private Transform _runningZRotation;
+    private Transform _backNormalRotation;
+    private Transform _playerTransform;
+
+    private GameObject _playerGameObject;
+
+    private Animator _playerAnim;
+
+    private Game_Manager _gameManager;
+
+    private List<Rigidbody> _ragdollRB;
+    private List<Collider> _ragdollCollider;
 
     private void Start()
     {
+        _ragdollRB = new List<Rigidbody>();
+        _ragdollCollider = new List<Collider>();
+
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        _playerAnim = _playerTransform.GetComponent<Animator>();
-
+        _playerGameObject = GameObject.FindGameObjectWithTag("Player").gameObject;
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Game_Manager>();
         _normalZRotation = GameObject.FindGameObjectWithTag("NorRot").gameObject.transform;
         _runningZRotation = GameObject.FindGameObjectWithTag("RunRot").gameObject.transform;
         _backNormalRotation = GameObject.FindGameObjectWithTag("BackRot").gameObject.transform;
+
+        _playerAnim = _playerTransform.GetComponent<Animator>();
+
+        _ragdollRB.AddRange(_playerGameObject.GetComponentsInChildren<Rigidbody>());
+        _ragdollCollider.AddRange(_playerGameObject.GetComponentsInChildren<Collider>());
+
+        foreach (var item in _ragdollRB)
+        {
+            item.isKinematic = true;
+        }
+        foreach (var item in _ragdollCollider)
+        {           
+            item.enabled = false;
+        }
 
         _timer = _returnNormalizedTime;
     }
 
     private void Update()
     {
+        if (_winner)
+        {
+            _winnerTimer += Time.deltaTime;
+            if (_winnerTimer>=0.5f)
+            {
+                _winnerTimer = 0;
+                _stop = true;
+            }
+        }
         if (!_stop)
         {
             PlayerController();
@@ -61,13 +96,16 @@ public class Player_Movement : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Winner")
-        {
-            _stop = true;
+        {           
+            _gameManager.GameStop = true;
             _randomWinAnimationCount = Random.Range(1, 4);
+            _winner = true;
         }
         else if (other.gameObject.tag == "Enemy")
         {
             _stop = true;
+            _gameManager.GameStop = true;
+            RagdolSysthem();
         }
     }   
 
@@ -145,6 +183,21 @@ public class Player_Movement : MonoBehaviour
 
             _mainCamera.fieldOfView = Mathf.Lerp(_mainCamera.fieldOfView, _normalFOV, _smoothTime * Time.deltaTime);
         }
+    }
+
+    private void RagdolSysthem()
+    {
+        _playerAnim.enabled = false;
+
+        foreach (var item in _ragdollCollider)
+        {
+            item.enabled = true;
+        }
+        foreach (var item in _ragdollRB)
+        {
+            item.isKinematic = false;
+        }
+       
     }
 
     #endregion

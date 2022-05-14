@@ -13,7 +13,8 @@ public class Enemy_Pooling : MonoBehaviour
 
     private float _timer;
 
-    private int _spawnTime=2;
+    private float _spawnTime = 0.2f;
+    private int _spawnRandom;
 
     private bool _timeStop = false;
 
@@ -32,11 +33,26 @@ public class Enemy_Pooling : MonoBehaviour
 
             _enemyList.Add(newEnemy);
         }
+        for (int i = 0; i < 2; i++)
+        {
+            if (i == 0)
+            {
+                _enemyList[i].transform.position = new Vector3(-1, 0, _player.transform.position.z + 15);
+                _enemyList[i].transform.parent = null;
+                _enemyList[i].SetActive(true);
+            }
+            else
+            {
+                _enemyList[i].transform.position = new Vector3(-1, 0, _player.transform.position.z + (15*(i+1)));
+                _enemyList[i].transform.parent = null;
+                _enemyList[i].SetActive(true);
+            }
+        }
     }
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x,transform.position.y,_player.transform.position.z+25);
+        transform.position = new Vector3(transform.position.x,transform.position.y,_player.transform.position.z+40);
 
         _timer += Time.deltaTime;
         if (_timer >= _spawnTime)
@@ -56,7 +72,24 @@ public class Enemy_Pooling : MonoBehaviour
                 item.transform.parent = null;
                 item.SetActive(true);
                 _timer = 0;
-                _spawnTime = Random.Range(1,3);               
+                _spawnRandom = Random.Range(1,5);
+                
+                switch (_spawnRandom)
+                {
+                    case 1:
+                        _spawnTime = _gameManager.EnemySpawnTime1;
+                     break;
+                    case 2:
+                        _spawnTime = _gameManager.EnemySpawnTime2;
+                        break;
+                    case 3:
+                        _spawnTime = _gameManager.EnemySpawnTime3;
+                        break;
+                    case 4:
+                        _spawnTime = _gameManager.EnemySpawnTime4;
+                        break;
+
+                }
                 break;
             }          
         }
