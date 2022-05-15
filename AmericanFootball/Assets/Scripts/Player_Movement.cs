@@ -19,6 +19,9 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float _smoothTime;
     private Camera _mainCamera;
 
+    [Header("Tutorial Settings")]
+    [SerializeField] private GameObject _tutorialUI;
+
     private bool _stop,_winner = false;
 
     private float _playerSpeed;
@@ -99,6 +102,7 @@ public class Player_Movement : MonoBehaviour
         if (other.gameObject.tag == "Winner")
         {           
             _gameManager.GameStop = true;
+            _gameManager.GameWin = true;
             _randomWinAnimationCount = Random.Range(1, 4);
             _winner = true;
         }
@@ -107,6 +111,7 @@ public class Player_Movement : MonoBehaviour
             _stop = true;
             _mainCamera.GetComponent<MainCamera>().enabled = true;
             _gameManager.GameStop = true;
+            _gameManager.GameLost = true;
             RagdolSysthem();
         }
     }   
@@ -118,6 +123,7 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             _timer = 0;
+            _tutorialUI.SetActive(false);
         }
         else if (Input.GetButtonUp("Fire1"))
         {

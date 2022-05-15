@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
     [Header("UI Settings")]
     [SerializeField] private Image _distanceBarIMG;
+    [SerializeField] private GameObject _gameUI;
+    [SerializeField] private GameObject _gameLostUI;
+    [SerializeField] private GameObject _gameWinUI;
 
     [Header("Game Settings")]
     public bool GameStop = false;
+    public bool GameLost = false;
+    public bool GameWin = false;
     
     [Header("Enemy Settings")]
     public float Enemy_Speed;
@@ -62,6 +68,25 @@ public class Game_Manager : MonoBehaviour
             _enemyPoolScript.enabled = false;
             _friendlyPoolScript.enabled = false;
         }
+        if (GameLost)
+        {
+            _gameUI.SetActive(false);
+            _gameLostUI.SetActive(true);
+        }
+        if (GameWin)
+        {
+            _gameUI.SetActive(false);
+            _gameWinUI.SetActive(true);
+        }
     }
+
+    #region BUTTONS
+
+    public void ReplayButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    #endregion
 
 }
